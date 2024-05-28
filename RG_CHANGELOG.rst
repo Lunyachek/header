@@ -9,6 +9,10 @@ and this project adheres to customized Semantic Versioning e.g.: `quince-rg.1`
 [Unreleased]
 ************
 
+Fix:
+====
+* Overlapping navigation elements for studio-header (RGOeX-26453)
+
 [quince-rg.1] - 2024-03-13
 **************************
 
