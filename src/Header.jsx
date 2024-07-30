@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import Responsive from 'react-responsive';
-import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+
+import CookiePolicyBanner from '@edx/frontend-component-cookie-policy-banner';
+import { getLocale, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
 import { AppContext } from '@edx/frontend-platform/react';
 import {
   APP_CONFIG_INITIALIZED,
@@ -14,6 +16,8 @@ import DesktopHeader from './DesktopHeader';
 import MobileHeader from './MobileHeader';
 
 import messages from './Header.messages';
+
+const showGamification = process.env.ENABLE_RG_GAMIFICATION ? process.env.ENABLE_RG_GAMIFICATION.toLowerCase() === 'true' : null;
 
 ensureConfig([
   'LMS_BASE_URL',
@@ -38,6 +42,19 @@ const Header = ({ intl }) => {
       type: 'item',
       href: `${config.LMS_BASE_URL}/dashboard`,
       content: intl.formatMessage(messages['header.links.courses']),
+    },
+  ];
+
+  const gamificationItems = [
+    {
+      type: 'item',
+      href: `${config.LMS_BASE_URL}/gamma_dashboard/dashboard`,
+      content: intl.formatMessage(messages['header.menu.performance.label']),
+    },
+    {
+      type: 'item',
+      href: `${config.LMS_BASE_URL}/gamma_dashboard/leaderboard`,
+      content: intl.formatMessage(messages['header.menu.leaderboard.label']),
     },
   ];
 
@@ -70,6 +87,11 @@ const Header = ({ intl }) => {
     },
   ];
 
+  // Users should see gamification links only if it enabled.
+  if (showGamification) {
+    userMenu.splice(1, 0, ...gamificationItems);
+  }
+
   // Users should only see Order History if have a ORDER_HISTORY_URL define in the environment.
   if (config.ORDER_HISTORY_URL) {
     userMenu.splice(-1, 0, orderHistoryItem);
@@ -100,8 +122,13 @@ const Header = ({ intl }) => {
     loggedOutItems: getConfig().AUTHN_MINIMAL_HEADER ? [] : loggedOutItems,
   };
 
+  const ENABLE_COOKIE_POLICY_BANNER = getConfig().ENABLE_COOKIE_POLICY_BANNER !== undefined
+    ? getConfig().ENABLE_COOKIE_POLICY_BANNER
+    : true;
+
   return (
     <>
+      {ENABLE_COOKIE_POLICY_BANNER ? <CookiePolicyBanner languageCode={getLocale()} /> : null}
       <Responsive maxWidth={768}>
         <MobileHeader {...props} />
       </Responsive>
