@@ -15,6 +15,7 @@ Fix:
 
 Changed:
 ========
+* Improve Gitlab CI checkers speed (RGOeX-26785)
 * Update the @edx/frontend-component-cookie-policy-banner package (RGOeX-26785)
 
 [quince-rg.1] - 2024-03-13

@@ -1,4 +1,4 @@
-image: node:16
+image: node:18
 
 stages:
   - conventions
@@ -7,10 +7,6 @@ stages:
 
 before_script:
   - npm install
-
-cache:
-  paths:
-    - node_modules/
 
 commit_convention:
   stage: conventions
