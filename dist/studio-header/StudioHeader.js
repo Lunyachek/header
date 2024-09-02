@@ -12,7 +12,8 @@ var StudioHeader = function StudioHeader(_ref) {
     title = _ref.title,
     isHiddenMainMenu = _ref.isHiddenMainMenu,
     mainMenuDropdowns = _ref.mainMenuDropdowns,
-    outlineLink = _ref.outlineLink;
+    outlineLink = _ref.outlineLink,
+    searchButtonAction = _ref.searchButtonAction;
   var _useContext = useContext(AppContext),
     authenticatedUser = _useContext.authenticatedUser,
     config = _useContext.config;
@@ -29,7 +30,8 @@ var StudioHeader = function StudioHeader(_ref) {
     logoutUrl: config.LOGOUT_URL,
     isHiddenMainMenu: isHiddenMainMenu,
     mainMenuDropdowns: mainMenuDropdowns,
-    outlineLink: outlineLink
+    outlineLink: outlineLink,
+    searchButtonAction: searchButtonAction
   };
   return /*#__PURE__*/React.createElement("div", {
     className: "studio-header"
@@ -55,14 +57,16 @@ StudioHeader.propTypes = {
       title: PropTypes.string
     }))
   })),
-  outlineLink: PropTypes.string
+  outlineLink: PropTypes.string,
+  searchButtonAction: PropTypes.func
 };
 StudioHeader.defaultProps = {
   number: '',
   org: '',
   isHiddenMainMenu: false,
   mainMenuDropdowns: [],
-  outlineLink: null
+  outlineLink: null,
+  searchButtonAction: null
 };
 export default StudioHeader;
 //# sourceMappingURL=StudioHeader.js.map

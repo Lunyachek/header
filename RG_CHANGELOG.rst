@@ -13,6 +13,10 @@ Fix:
 ====
 * Overlapping navigation elements for studio-header (RGOeX-26453)
 
+Changed:
+========
+* Update the @edx/frontend-component-cookie-policy-banner package (RGOeX-26785)
+
 [quince-rg.1] - 2024-03-13
 **************************
 
