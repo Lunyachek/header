@@ -49,6 +49,11 @@ var messages = defineMessages({
     id: 'header.label.courseOutline',
     defaultMessage: 'Back to course outline in Studio',
     description: 'The aria label for the link back to the Studio Course Outline'
+  },
+  'header.label.search.nav': {
+    id: 'header.label.search.nav',
+    defaultMessage: 'Search content',
+    description: 'The aria label for the search content button nav'
   }
 });
 export default messages;

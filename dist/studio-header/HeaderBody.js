@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ActionRow, Button, Container, Nav, Row } from '@openedx/paragon';
-import { Close, MenuIcon } from '@openedx/paragon/icons';
+import { useIntl } from '@edx/frontend-platform/i18n';
+import { ActionRow, Button, Container, Icon, IconButton, Nav, Row } from '@openedx/paragon';
+import { Close, MenuIcon, Search } from '@openedx/paragon/icons';
 import CourseLockUp from './CourseLockUp';
 import UserMenu from './UserMenu';
 import BrandNav from './BrandNav';
 import NavDropdownMenu from './NavDropdownMenu';
+import messages from './messages';
 var HeaderBody = function HeaderBody(_ref) {
   var logo = _ref.logo,
     logoAltText = _ref.logoAltText,
@@ -23,7 +25,9 @@ var HeaderBody = function HeaderBody(_ref) {
     isModalPopupOpen = _ref.isModalPopupOpen,
     isHiddenMainMenu = _ref.isHiddenMainMenu,
     mainMenuDropdowns = _ref.mainMenuDropdowns,
-    outlineLink = _ref.outlineLink;
+    outlineLink = _ref.outlineLink,
+    searchButtonAction = _ref.searchButtonAction;
+  var intl = useIntl();
   var renderBrandNav = /*#__PURE__*/React.createElement(BrandNav, {
     studioBaseUrl: studioBaseUrl,
     logo: logo,
@@ -65,7 +69,12 @@ var HeaderBody = function HeaderBody(_ref) {
       buttonTitle: buttonTitle,
       items: items
     });
-  }))), /*#__PURE__*/React.createElement(ActionRow.Spacer, null), /*#__PURE__*/React.createElement(Nav, null, /*#__PURE__*/React.createElement(UserMenu, {
+  }))), /*#__PURE__*/React.createElement(ActionRow.Spacer, null), searchButtonAction && /*#__PURE__*/React.createElement(Nav, null, /*#__PURE__*/React.createElement(IconButton, {
+    src: Search,
+    iconAs: Icon,
+    onClick: searchButtonAction,
+    "aria-label": intl.formatMessage(messages['header.label.search.nav'])
+  })), /*#__PURE__*/React.createElement(Nav, null, /*#__PURE__*/React.createElement(UserMenu, {
     username: username,
     studioBaseUrl: studioBaseUrl,
     logoutUrl: logoutUrl,
@@ -97,7 +106,8 @@ HeaderBody.propTypes = {
       title: PropTypes.string
     }))
   })),
-  outlineLink: PropTypes.string
+  outlineLink: PropTypes.string,
+  searchButtonAction: PropTypes.func
 };
 HeaderBody.defaultProps = {
   setModalPopupTarget: null,
@@ -114,7 +124,8 @@ HeaderBody.defaultProps = {
   isMobile: false,
   isHiddenMainMenu: false,
   mainMenuDropdowns: [],
-  outlineLink: null
+  outlineLink: null,
+  searchButtonAction: null
 };
 export default HeaderBody;
 //# sourceMappingURL=HeaderBody.js.map
