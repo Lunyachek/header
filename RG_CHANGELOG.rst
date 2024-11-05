@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 The format is based on `Keep a Changelog <https://keepachangelog.com/en/1.0.0/>`_,
 and this project adheres to customized Semantic Versioning e.g.: `quince-rg.1`
 
+Header synchronization with upstream occurs at the time of a major release, such as Palm, Quince, Redwood, etc. If there were no changes in our version of the header between major releases, we simply add a note stating that a sync was performed with the specified upstream header version.
+
 [Unreleased]
 ************
 
@@ -20,6 +22,10 @@ Changed:
 ========
 * Improve Gitlab CI checkers speed (RGOeX-26785)
 * Update the @edx/frontend-component-cookie-policy-banner package (RGOeX-26785)
+
+Sync
+====
+Syncronized with upstream's version 5.0.2 (RGInt-115)
 
 [quince-rg.1] - 2024-03-13
 **************************
